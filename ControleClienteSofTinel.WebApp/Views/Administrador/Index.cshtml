@@ -1,0 +1,154 @@
+﻿@using ControleClienteSofTinel.Dominio.Entidades
+@{
+    ViewData["Title"] = "Administradores";
+}
+@model IEnumerable<ADMAdministradorVO>
+@*wrapper*@
+<div class="wrapper">
+    @*page*@
+    <div class="page">
+        @*page-inner*@
+        <div class="page-inner">
+            @*page-title-bar*@
+            <header class="page-title-bar">
+                @*Breadcrumb*@
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            <a href="#">
+                                <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Cadastros Gerais
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+                @*Title*@
+                <div class="d-sm-flex align-items-sm-center">
+                    <h1 class="page-title mr-sm-auto mb-0"> @ViewData["Title"] </h1>
+                    <div id="dt-buttons" class="btn-toolbar"></div>
+                    <div class="btn-toolbar">
+                        <a href="@Url.Action("Create", "Administrador")" class="btn btn-success">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <span class="ml-1">Novo</span>
+                        </a>
+                    </div>
+                </div>
+                @*Float button*@
+                <a href="@Url.Action("Create","Administrador")" class="btn btn-success btn-floated">
+                    <span class="fa fa-plus margin-top"></span>
+                </a>
+            </header>
+            @*page-title-bar*@
+            @*page-section*@
+            <div class="page-section">
+                @*Conteúdo da página aqui*@
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="row">
+                            <div class="col-md-2 col-lg-2 col-sm-2 form-group">
+                                @Html.TextBox("Id", null, new { @id = "table-search", @class = "form-control", @placeholder = "Pesquisar por Id", @type = "number" })
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-sm-2 form-group">
+                                @Html.TextBox("Codigo", null, new { @id = "table-search", @class = "form-control", @placeholder = "Pesquisar por Codigo" })
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-sm-2 form-group">
+                                @Html.TextBox("Nome", null, new { @id = "table-search", @class = "form-control", @placeholder = "Pesquisar por Nome" })
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-lg-2 form-group">
+                                <select name="Perfil" class="form-control">
+                                    <option value="">Perfil</option>
+                                    <option value="A">Administrador</option>
+                                    <option value="D">Diretor</option>
+                                    <option value="G">Gerente</option>
+                                    <option value="T">Gestor</option>
+                                    <option value="O">Operador</option>
+                                    <option value="V">Visitante</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-lg-2 form-group">
+                                <select name="Ativo" class="form-control">
+                                    <option value="">Ativo</option>
+                                    <option value="S">Sim</option>
+                                    <option value="N">Não</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-lg-2 col-sm-2 form-group">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    <table id="myTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Código Interno</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Perfil</th>
+                                <th>Ativo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count() > 0)
+                            {
+                                foreach (ADMAdministradorVO Administrador in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.Raw(Administrador.Id)</td>
+                                        <td>@Html.Raw(Administrador.Codigo)</td>
+                                        <td>@Html.Raw(Administrador.Nome)</td>
+                                        <td>@Html.Raw(Administrador.Email)</td>
+                                        <td>@Html.Raw(Administrador.Perfil)</td>
+                                        <td>@Html.Raw(Administrador.Ativo)</td>
+                                        <td>
+                                            <a href="@Url.Action("View","Administrador", new { Id = Administrador.Id})" class="btn btn-warning" data-toggle="tooltip" title="Visualizar Registro">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                            <a href="@Url.Action("Edit","Administrador", new { Id = Administrador.Id })" class="btn btn-primary" data-toggle="tooltip" title="Editar Registro">
+                                                <i class="fa fa-file-text" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">Nenhum item encontrado!</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @*page-section*@
+        </div>
+        @*page-inner*@
+    </div>
+    @*page*@
+</div>
+@*wrapper*@
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    paginate: {
+                        previous: '<i class="fa fa-lg fa-angle-left"></i> Anterior',
+                        next: 'Próximo <i class="fa fa-lg fa-angle-right"></i> '
+                    }
+                },
+            });
+        });
+    </script>
+}
+

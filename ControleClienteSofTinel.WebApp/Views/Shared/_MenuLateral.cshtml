@@ -1,0 +1,493 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+<header class="app-header">
+    @*top-bar*@
+    <div class="top-bar">
+        @* .top-bar-brand*@
+        <div class="top-bar-brand">
+            <a href="index.html">
+                SofTunel Inc
+                <img src="~/images/protocolo32.png" height="32" alt="logo-empresa">
+            </a>
+        </div>
+        @* /.top-bar-brand*@
+        @* .top-bar-list*@
+        <div class="top-bar-list">
+            @* .top-bar-item*@
+            <div class="top-bar-item px-2 d-md-none d-lg-none d-xl-none">
+                @* toggle menu*@
+                <button class="hamburger hamburger-squeeze" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+                @* /toggle menu*@
+            </div>
+            @* /.top-bar-item*@
+            @* .top-bar-item*@
+            <div class="top-bar-item top-bar-item-full">
+                @* .top-bar-search*@
+                <div class="top-bar-search">
+                    GCN <span>- Gerenciador Clientes</span>
+                </div>
+                @* /.top-bar-search*@
+            </div>
+            @* /.top-bar-item*@
+            @* .top-bar-item*@
+            <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
+                @* .nav*@
+                <ul class="header-nav nav">
+                    <li class="nav-item dropdown header-nav-dropdown ">
+                        <img src="~/images/QAS.png" class="img-responsive" />
+                        QAS [v - @System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()]
+                    </li>
+                    @* .nav-item*@
+                    <li class="nav-item dropdown header-nav-dropdown has-notified">
+                        <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+                        <div class="dropdown-arrow"></div>
+                        @* .dropdown-menu*@
+                        <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
+                            <h6 class="dropdown-header stop-propagation">
+                                <span>
+                                    Activities
+                                    <i class="fa fa-bell">(2)</i>
+                                </span>
+                            </h6>
+                            @*dropdown-scroll*@
+                            <div class="dropdown-scroll has-scrollable">
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item unread">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/uifaces15.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="text"> Jeffrey Wells created a schedule </p>
+                                        <span class="date">Just now</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item unread">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/uifaces16.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="text"> Anna Vargas logged a chat </p>
+                                        <span class="date">3 hours ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/uifaces17.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="text"> Sara Carr invited to Stilearn Admin </p>
+                                        <span class="date">5 hours ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/uifaces18.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="text"> Sara Carr updated a project </p>
+                                        <span class="date">1 day ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/uifaces19.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="text"> Arthur Carroll created a task </p>
+                                        <span class="date">1 day ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/uifaces20.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="text"> Angela Peterson assign a task to you </p>
+                                        <span class="date">2 days ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/uifaces21.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="text"> Willie Dixon and 3 others followed you </p>
+                                        <span class="date">2 days ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                            </div>
+                            @* /.dropdown-scroll*@
+                            <a href="user-activities.html" class="dropdown-footer">
+                                All activities
+                                <i class="fa fa-fw fa-long-arrow-alt-right"></i>
+                            </a>
+                        </div>
+                        @* /.dropdown-menu*@
+                    </li>
+                    @* /.nav-item*@
+                    @*nav-item*@
+                    <li class="nav-item dropdown header-nav-dropdown has-notified">
+                        <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                        </a>
+                        <div class="dropdown-arrow"></div>
+                        @*dropdown-menu*@
+                        <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
+                            <h6 class="dropdown-header stop-propagation">
+                                <span>Messages</span>
+                                <a href="#">Mark all as read</a>
+                            </h6>
+                            @*dropdown-scroll*@
+                            <div class="dropdown-scroll has-scrollable">
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item unread">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/team1.jpg" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="subject"> Stilearning </p>
+                                        <p class="text text-truncate"> Invitation: Joe's Dinner Fri Aug 22 </p>
+                                        <span class="date">2 hours ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/team3.png" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="subject"> Openlane </p>
+                                        <p class="text text-truncate"> Final reminder: Upgrade to Pro </p>
+                                        <span class="date">23 hours ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="tile tile-circle bg-green"> GZ </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="subject"> Gogo Zoom </p>
+                                        <p class="text text-truncate"> Live healthy with this wireless sensor. </p>
+                                        <span class="date">1 day ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="tile tile-circle bg-teal"> GD </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="subject"> Gold Dex </p>
+                                        <p class="text text-truncate"> Invitation: Design Review Mon Jul 7 </p>
+                                        <span class="date">1 day ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="user-avatar">
+                                        <img src="assets/images/avatars/team2.png" alt="">
+                                    </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="subject"> Creative Division </p>
+                                        <p class="text text-truncate"> Need some feedback on this please </p>
+                                        <span class="date">2 days ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                                @*dropdown-item*@
+                                <a href="#" class="dropdown-item">
+                                    <div class="tile tile-circle bg-pink"> LD </div>
+                                    <div class="dropdown-item-body">
+                                        <p class="subject"> Lab Drill </p>
+                                        <p class="text text-truncate"> Our UX exercise is ready </p>
+                                        <span class="date">6 days ago</span>
+                                    </div>
+                                </a>
+                                @* /.dropdown-item*@
+                            </div>
+                            @* /.dropdown-scroll*@
+                            <a href="app-messages.html" class="dropdown-footer">
+                                All messages
+                                <i class="fa fa-fw fa-long-arrow-alt-right"></i>
+                            </a>
+                        </div>
+                        @* /.dropdown-menu*@
+                    </li>
+                    @* /.nav-item*@
+                </ul>
+                @* /.nav*@
+                @*btn-account*@
+                <div class="dropdown">
+                    <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @*<span class="user-avatar">
+                                <img src="~/images/profile_small.jpg"    alt="avatar">
+                            </span>*@
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="account-summary pr-lg-4 d-none d-lg-block">
+                            <span class="account-name">@User.Identity.Name</span>
+                            @*<span class="account-description">Marketing Manager</span>*@
+                        </span>
+                    </button>
+                    <div class="dropdown-arrow dropdown-arrow-left"></div>
+                    @*dropdown-menu*@
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="@Url.Action("Index", "Manage")">
+                            <span class="dropdown-icon oi oi-person"></span> Configurações de Conta
+                        </a>
+                        @using (Html.BeginForm("Logout", "Account"))
+                        {
+                            <button class="dropdown-item" href="auth-signin-v1.html">
+                                <span class="dropdown-icon oi oi-account-logout"></span> Sair
+                            </button>
+                        }
+
+                        @*<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Help Center</a>
+                            <a class="dropdown-item" href="#">Ask Forum</a>
+                            <a class="dropdown-item" href="#">Keyboard Shortcuts</a>*@
+                    </div>
+                    @* /.dropdown-menu*@
+                </div>
+                @* /.btn-account*@
+            </div>
+            @* /.top-bar-item*@
+        </div>
+        @* /.top-bar-list*@
+    </div>
+    @* /.top-bar*@
+</header>
+<aside class="app-aside">
+    @*aside-content*@
+    <div class="aside-content">
+        @*aside-header*@
+        <header class="aside-header d-block d-md-none">
+            @*btn-account*@
+            <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span class="account-icon">
+                    <span class="fa fa-caret-down fa-lg"></span>
+                </span>
+                <span class="account-summary">
+                    <span class="account-name">@User.Identity.Name</span>
+                    @*<span class="account-description">Marketing Manager</span>*@
+                </span>
+            </button>
+            @* /.btn-account*@
+            @*dropdown-aside*@
+            <div id="dropdown-aside" class="dropdown-aside collapse">
+                @* dropdown-items*@
+                <div class="pb-3">
+                    <a class="dropdown-item" href="user-profile.html">
+                        <span class="dropdown-icon oi oi-person"></span> Configurações de Conta
+                    </a>
+                    @using (Html.BeginForm("Logout", "Account"))
+                    {
+                        <button class="dropdown-item" href="auth-signin-v1.html">
+                            <span class="dropdown-icon oi oi-account-logout"></span> Sair
+                        </button>
+                    }
+                    @*<div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Help Center</a>
+                        <a class="dropdown-item" href="#">Ask Forum</a>
+                        <a class="dropdown-item" href="#">Keyboard Shortcuts</a>*@
+                </div>
+                @* /dropdown-items*@
+            </div>
+            @* /.dropdown-aside*@
+        </header>
+        @* /.aside-header*@
+        @*aside-menu*@
+        <section class="aside-menu has-scrollable">
+            @*stacked-menu*@
+            <nav id="stacked-menu" class="stacked-menu">
+                @*menu*@
+                <ul class="menu">
+                    @*menu-item*@
+                    <li class="menu-item">
+                        <a href="@Url.Action("Index","Home")" class="menu-link">
+                            <i class="menu-icon fa fa-dashboard"></i>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    @* /.menu-item*@
+                    @*menu-item*@
+                    @*@if ((await AuthorizationService.AuthorizeAsync(User, "Menu.Administracao.Parametro")).Succeeded)
+                        {
+                            <li class="menu-item has-active has-child">
+                                <a href="#" class="menu-link">
+                                    <span class="menu-icon fa fa-desktop"></span>
+                                    <span class="menu-text">Layouts</span>
+                                    <span class="badge badge-success">20+</span>
+                                </a>
+                                @* child menu
+                                <ul class="menu">
+                                    <li class="menu-item has-active">
+                                        <a href="layout-blank.html" class="menu-link">Blank Page</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layout-nosearch.html" class="menu-link">Header no Search</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layout-fullwidth.html" class="menu-link">Full Width</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layout-pagenavs.html" class="menu-link">Page Navs</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layout-pagesidebar.html" class="menu-link">Page Sidebar</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="layout-pagecover.html" class="menu-link">Page Cover</a>
+                                    </li>
+                                </ul>
+                                @* /child menu
+                            </li>
+                        }*@
+
+                    @* /.menu-item*@
+                    @*menu-header*@
+                    <li class="menu-header">Menu Operacional </li>
+                    @* /.menu-header*@
+                    @**Menu Item*@
+                    <li class="menu-item has-child">
+                        <a href="#" class="menu-link">
+                            <span class="menu-icon fa fa-adjust"></span>
+                            <span class="menu-text">Administração</span>
+                        </a>
+                        @**Chield Menu*@
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Objeto")" class="menu-link">Objetos</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Parametro")" class="menu-link">Parâmetros</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Users")" class="menu-link">Usuários</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Category")" class="menu-link">Categorias</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Acessos")" class="menu-link">Acessos</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Grupos")" class="menu-link">Grupos</a>
+                            </li>
+                        </ul>
+                        @**end child menu*@
+                    </li>
+                    @**End Menu-Item*@
+                    @*menu-item*@
+                    <li class="menu-item has-child">
+                        <a href="#" class="menu-link">
+                            <span class="menu-icon fa fa-pencil"></span>
+                            <span class="menu-text">Cadastros</span>
+                        </a>
+                        @* child menu*@
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Administrador")" class="menu-link">Administradores</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Empresa")" class="menu-link">Empresas</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Pedido")" class="menu-link">Pedidos</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","PedidoStatus")" class="menu-link">Status de Pedidos</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Plano")" class="menu-link">Planos de Pagamentos</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Segmento")" class="menu-link">Segmentos Cliente</a>
+                            </li>
+                        </ul>
+                        @* /child menu*@
+                    </li>
+					
+					<li class="menu-item has-child">
+                        <a href="#" class="menu-link">
+                            <span class="menu-icon fa fa-area-chart"></span>
+                            <span class="menu-text">Movimentos</span>
+                        </a>
+                        @* child menu*@
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <a href="@Url.Action("Index","Remessa")" class="menu-link">Remessas</a>
+                            </li>                            
+							<li class="menu-item">
+                                <a href="@Url.Action("Index","TipoLicitacoes")" class="menu-link">TipoLicitacoes</a>
+                            </li>
+							<li class="menu-item">
+                                <a href="@Url.Action("Index","TipoServicos")" class="menu-link">Tipos Servicos</a>
+                            </li>
+							<li class="menu-item">
+                                <a href="@Url.Action("Index","ControlePrecos")" class="menu-link">Controle de Preços</a>
+                            </li>
+							<li class="menu-item">
+                                <a href="@Url.Action("Index","Orgão")" class="menu-link">Orgãos</a>
+                            </li>
+							<li class="menu-item">
+                                <a href="@Url.Action("Index","Sub-Orgão")" class="menu-link">Sub-Orgãos</a>
+                            </li>
+							<li class="menu-item">
+                                <a href="@Url.Action("Index","Noticias")" class="menu-link">Notícias</a>
+                            </li>
+                        </ul>
+                        @* /child menu*@
+                    </li>
+                    @* /.menu-item*@
+                    @*menu-item*@
+                    @*
+                        Controle de menu por perfil
+                    *@
+                    @if (User.IsInRole("Colaborador"))
+                    {
+                        <li class="menu-item has-child">
+                            <a href="#" class="menu-link">
+                                <span class="menu-icon fa fa-dashboard"></span>
+                                <span class="menu-text">RDV</span>
+                            </a>
+                            @* child menu*@
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <a href="@Url.Action("Index","Avisos")" class="menu-link">Avisos</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="@Url.Action("Index","Adiantamentos")" class="menu-link">Adiantamentos</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    @*/menu-item*@
+                    @* /.menu*@
+                </ul>
+            </nav>
+            @* /.stacked-menu*@
+        </section>
+        @* /.aside-menu*@
+    </div>
+    @* /.aside-content*@
+</aside>

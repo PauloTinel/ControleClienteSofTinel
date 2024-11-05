@@ -1,0 +1,148 @@
+﻿@model ControleClienteSofTinel.Dominio.Entidades.ADMEmpresaVO
+@{
+    ViewData["Title"] = "Editar Empresa";
+}
+<link rel="stylesheet" href="~/css/sweetalert.css" />
+<link rel="stylesheet" href="~/assets/vendor/select2/css/select2.min.css" />
+@*wrapper*@
+<div class="wrapper">
+    @*page*@
+    <div class="page">
+        @*page-inner*@
+        <div class="page-inner">
+            @*page-title-bar*@
+            <header class="page-title-bar">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            <a href="@Url.Action("Index","Empresa")">
+                                <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Empresaes
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+                @*page title stuff goes here*@
+                <h1 class="page-title">@ViewData["Title"]</h1>
+            </header>
+            @*page-title-bar*@
+            @*page-section*@
+            <div class="page-section">
+                @*Conteúdo da página aqui*@
+                <p class="alert alert-info alert-dismissible fade show">
+                    <small>Todos os campos com * são obrigatórios</small>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </p>
+                <section id="base-style" class="card">
+                    <!-- .card-body -->
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.Raw(TempData["FlashMensage"]);
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.VersaoRegistro)
+                            @Html.HiddenFor(model => model.Cadastro)
+                            @Html.HiddenFor(model => model.CadastradoPor)
+                            @* <fieldset>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                        <label for="Ativo"> Ativo </label>
+                                        <br />
+                                        <select asp-for="Ativo" class="form-control">
+                                            <option value="">Selecione</option>
+                                            <option value="S">Sim</option>
+                                            <option value="N">Não</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                         <label for="Perfil"> Perfil </label>
+                                        <br />
+                                        <select asp-for="Perfil" class="form-control">
+                                            <option value="">Selecione</option>
+                                            <option value="A">Empresa</option>
+                                            <option value="D">Diretor</option>
+                                            <option value="G">Gerente</option>
+                                            <option value="T">Gestor</option>
+                                            <option value="O">Operador</option>
+                                            <option value="V">Visitante</option>
+                                        </select>
+                                    </div>
+                                </div>                                
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                        <label for="Codigo" data-toggle="tooltip" title="Campo Obrigatório"> Código <strong class="text-amazon">*</strong> </label>  @Html.ValidationMessageFor(model => model.Codigo, null, new { @class = "text-danger" })@Html.TextBoxFor(model => model.Codigo, new { @class = "form-control", @placeholder = "Código" })
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                        <label for="Nome" data-toggle="tooltip" title="Campo Obrigatório"> Nome <strong class="text-amazon">*</strong> </label>  @Html.ValidationMessageFor(model => model.Nome, null, new { @class = "text-danger" })@Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @placeholder = "Nome" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                        <label for="Email" data-toggle="tooltip" title="Campo Obrigatório"> Email <strong class="text-amazon">*</strong> </label>  @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })@Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-lg-2">
+                                        <label for="Senha" data-toggle="tooltip" title="Campo Obrigatório"> Senha<strong class="text-amazon">*</strong> </label>  @Html.ValidationMessageFor(model => model.Senha, null, new { @class = "text-danger" })@Html.TextBoxFor(model => model.Senha, new { @class = "form-control", @placeholder = "Senha", Type = "PassWord" })
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-lg-2">
+                                        <label for="SenhaRed" data-toggle="tooltip" title="Campo Obrigatório"> Repita Senha<strong class="text-amazon">*</strong> </label>  @Html.ValidationMessageFor(model => model.SenhaRed, null, new { @class = "text-danger" })@Html.TextBoxFor(model => model.SenhaRed, new { @class = "form-control", @placeholder = "Repetir Senha", Type = "PassWord" })
+                                    </div>
+                                </div>    
+                                <br />
+                                <div class="form-group">
+                                    <button class="btn btn-success" type="submit" id="btnSalva">
+                                        Salvar
+                                    </button>
+                                    <button class="btn btn-warning" type="reset">
+                                        Limpar
+                                    </button>
+                                </div>      
+                                
+                            </fieldset> *@                            
+                        }
+                    </div>
+                </section>
+            </div>
+            @*page-section*@
+        </div>
+        @*page-inner*@
+    </div>
+    @*page*@
+</div>
+@*wrapper*@
+
+@section scripts{
+    <script src="~/js/sweetalert.js"></script>
+    <script src="~/js/jquery.maskedinput.min.js"></script>
+    <script src="~/assets/vendor/select2/js/select2.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".select2").select2();
+        })
+
+        $("form").submit(function (e) {
+            var required = false;
+            if ($("#Nome").val().length == 0) {
+                $("#Nome").css("border-color", "#f92828");
+                required = false;
+            }           
+            if ($("#Codigo").val().length == 0) {
+                $("#Codigo").css("border-color", "#f92828");
+                required = true;
+            }
+            if ($("#Ativo").val().length == 0) {
+                $("#Ativo").css("border-color", "#f92828");
+                required = true;
+            }            
+            if (required) {
+                swal("Ação Cancelada!", "Seu formulário não pode ser enviado! Verifique os campos em destaque.", "error")
+                e.preventDefault();
+                $("#btnSalva").removeAttr("disabled", "disabled");
+                $("#btnSalva").text("Salvar");
+            }
+        })
+    </script>
+}
+              

@@ -1,0 +1,139 @@
+﻿@model ControleClienteSofTinel.Dominio.Entidades.ADMAdministradorVO
+@{
+    ViewData["Title"] = "Vizualizar Administrador";
+}
+<link rel="stylesheet" href="~/css/sweetalert.css" />
+@*wrapper*@
+<div class="wrapper">
+    @*page*@
+    <div class="page">
+        @*page-inner*@
+        <div class="page-inner">
+            @*page-title-bar*@
+            <header class="page-title-bar">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            <a href="@Url.Action("Index", "Administrador")">
+                                <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Administradores
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+                @*page title stuff goes here*@
+                <div class="d-sm-flex align-items-sm-center">
+                    <h1 class="page-title mr-sm-auto mb-0">@ViewData["Title"]</h1>
+                </div>
+            </header>
+            @*page-title-bar*@
+            @*page-section*@
+            <div class="page-section">
+                @*Conteúdo da página aqui*@
+                <section id="base-style" class="card">
+                    @* Abas das páginas *@
+                    <!-- .card-body -->
+                    <div class="card-body">
+                        @Html.HiddenFor(model => model.Id)
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="Ativo"><strong>Situação: </strong></label>
+                                @Html.Raw(Model.Ativo)
+                            </div>
+                            <div class="form-group">
+                                <label for="Codigo"><strong>Código Administrador :</strong></label>
+                                @Model.Codigo
+                            </div>
+                            <div class="form-group">
+                                <label for="Nome"><strong>Nome: </strong></label>
+                                @Html.Raw(Model.Nome)
+                            </div>
+                            <div class="form-group">
+                                <label for="Email"><strong>Email: </strong></label>
+                                @Html.Raw(Model.Email)
+                            </div>
+                            <div class="form-group">
+                                <label for="Perfil"><strong>Perfil: </strong></label>
+                                @Html.Raw(Model.Perfil)
+                            </div>
+                            <div class="form-group">
+                                <label for="Ativo"><strong>Ativo: </strong></label>
+                                @Html.Raw(Model.Ativo)
+                            </div>
+                            <div class="form-group">
+                                <label for="Cadastro"><strong>Cadastrado em: </strong></label>
+                                @Html.Raw(Model.Cadastro) -<strong>por:</strong> @Html.Raw(Model.CadastradoPor)
+                            </div>
+                            <div class="form-group">
+                                <label for="Edicao"><strong>Editado em: </strong></label>
+                                @Html.Raw(Model.Edicao) -<strong>por:</strong> @Html.Raw(Model.EditadoPor)
+                            </div>
+                            <div class="form-group">
+                                <label for=""><strong>Ações: </strong></label>
+                                <a href="@Url.Action("Edit","Administrador", new { Id = Model.Id})" class="btn btn-primary">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                                </a>
+                                <button id="btnExcluir" class="btn btn-danger bg-danger">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </section>
+            </div>
+            @*page-section*@
+        </div>
+        @*page-inner*@
+    </div>
+    @*page*@
+</div>
+@*wrapper*@
+
+@section scripts{
+    <script src="~/js/sweetalert.js"></script>
+    <script type="text/javascript">
+        $("#btnExcluir").click(function () {
+
+            swal({
+                title: "Você tem certeza que deseja excluir?",
+                text: "Você não vai poder recuperar este registro novamente!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Sim, pode excluir!",
+                cancelButtonText: "Não, Cancelar Ação!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: '@Url.Action("Delete", "Administrador")',
+                            type: "POST",
+                            data: JSON.stringify($("#Id").val()),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+                                if (response.success) {
+                                    swal("Excluído!", "Seu registro foi excluído com sucesso.", "success");
+
+                                    setTimeout(function (self) {
+                                        window.history.go(-1);
+                                    }, 5000, this);
+                                } else {
+                                    swal("Erro", response.erro, "error");
+                                }
+                            },
+                            error: function () {
+                                console.warn("Erro");
+                            }
+                        })
+                    } else {
+                        swal("Ação Cancelada", "Clique para fechar", "error");
+                    }
+                });
+
+        });
+    </script>
+}
+

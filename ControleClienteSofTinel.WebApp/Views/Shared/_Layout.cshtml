@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TINEL LCT</title>
+
+    <link rel="stylesheet" href="~/assets/vendor/pace/pace.min.css"  />
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="~/assets/vendor/stylesheets/main.min.css"  />
+    <link rel="stylesheet" href="~/assets/vendor/stylesheets/custom.min.css"  />
+    <link rel="stylesheet" href="~/assets/vendor/datatables/extensions/buttons/buttons.bootstrap4.min.css"  />
+
+</head>
+<body>
+    <div class="app">
+        <main class="app-main">
+            @Html.Partial("_MenuLateral")
+            @RenderBody()
+            <hr />
+            <footer class="text-center bg-box">
+                <p>Todos os direitos reservados &copy; 2024 - TINEL LCT</p>
+           @*      <a href="https://www.makeit.com.br" target="_blank">
+                    <img class="img-responsive" src="~/images/Logo/footer-logo.png" alt="logo-makeit" />
+                </a> *@
+            </footer>
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/popper.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/vendor/pace/pace.min.js"></script>
+    <script src="~/assets/vendor/stacked-menu/stacked-menu.min.js"></script>
+    <script src="~/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/vendor/javascript/main.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendor/datatables/extensions/buttons/dataTables.buttons.min.js"></script>
+    <script src="~/assets/vendor/datatables/extensions/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="~/assets/vendor/datatables/extensions/buttons/buttons.html5.min.js"></script>
+    <script src="~/assets/vendor/datatables/extensions/buttons/buttons.print.min.js"></script>
+    <script src="~/assets/vendor/datatables/extensions/buttons/buttons.flash.min.js"></script>
+    <script src="~/assets/vendor/javascript/pages/dataTables.bootstrap.min.js"></script>
+
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

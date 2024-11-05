@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ControleClienteSofTinel.Data\ControleClienteSofTinel.Data.csproj" />
+    <ProjectReference Include="..\ControleClienteSofTinel.Dominio\ControleClienteSofTinel.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>
